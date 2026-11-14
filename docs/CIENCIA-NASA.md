@@ -204,3 +204,18 @@ S30. Estudo primário, [Infectious disease outcomes of NASA's health stabilizati
 ## 9. Estado desta entrega
 
 Pesquisa de fontes e documento: executados. Matriz completa de conformidade NASA: não realizada; fora do propósito de um hackathon educativo. Validação clínica, testes em astronautas e integração com equipamentos reais: não realizados. O documento propõe escopo e critérios para implementação; só a equipe de engenharia deve marcar funcionalidade como entregue após teste.
+
+## Anexo — pesquisa complementar de 2026 (dados abertos)
+
+A pasta [`pesquisa-2026/`](pesquisa-2026/LEIA-ME.md) reúne um lote complementar a este documento: receita de acesso aos dados abertos da NASA, literatura de 2024–2026 e um modelo executável das três simulações prioritárias. **Nada aqui altera requisitos, classificações ou afirmações acima**; os números normativos continuam sendo V1 4030 (600 mSv), V1 4033 (GCR < 1,3 mSv/dia) e V2 6004 (ppCO₂ ≤ 3 mmHg).
+
+O que o lote acrescenta, com proveniência:
+
+- **Dados humanos abertos (OSDR).** Catálogo de 10 estudos verificados em 14/11/2026 (`OSD-569`…`OSD-656`, `OSD-53`), API REST documentada e uma amostra real do painel metabólico da Inspiration4 (`OSD-575`, n = 4, 7 coletas). A amostra contém valores implausíveis (glicose de 36 mg/dL em R+45), o que reforça a decisão de tratar **qualidade do dado antes da interpretação**.
+- **Dose medida versus requisito.** A Artemis I mediu **1,18 mSv/dia** dentro da Orion (P03), valor *abaixo* do limite de projeto de 1,3 mSv/dia da V1 4033 — o dado serve de contexto, não de substituição do requisito.
+- **Radiação aguda.** Um SPE de referência tipo 1972 equivaleria a ~37% da carreira; o colete AstroRad reduziria o evento em ~60,7% (P04). Isso sustenta a distinção entre reduzir exposição futura e alterar dose já recebida.
+- **SANS.** Consenso de 2026 reporta ao menos uma característica em **81%** dos astronautas da NASA (P01), sem contramedida estabelecida — coerente com a decisão de não criar "cura" na interface.
+- **Sono e CO₂.** 6,09 h de sono obtidas na ISS e 52% das noites com hipnótico (P07); CO₂ nominal de 3 mmHg com cefaleia entre 2 e 5 mmHg (P14).
+- **Modelo executável.** `scripts/simulador_astral_vital.py` gera hipóxia, alteração cardiovascular e exposição radiológica com alertas e *lead time* mensurável (11 min no cenário de hipóxia), pronto para virar lógica de domínio.
+
+Limites: os dados humanos abertos são esparsos e de poucos participantes; a telemetria contínua das simulações é sintética; nada substitui validação clínica. Detalhes em [`pesquisa-2026/LEIA-ME.md`](pesquisa-2026/LEIA-ME.md) e [`pesquisa-2026/DOSSIE.md`](pesquisa-2026/DOSSIE.md).

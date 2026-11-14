@@ -1,0 +1,239 @@
+{
+  "meta": {
+    "projeto": "ASTRAL VITAL",
+    "contexto": "NASA Space Apps Challenge 2026 — Create Health Monitoring Software for Astronauts on Space Missions",
+    "atualizado_em": "2026-11-14",
+    "aviso": "Limiares para TRIAGEM e apoio à decisão. Não constituem diagnóstico nem substituem protocolo de flight surgeon.",
+    "regra_de_ouro": "Limiar populacional é fail-safe; o gatilho primário é o desvio do baseline individual (mediana/MAD das primeiras 72 h)."
+  },
+  "limite_carreira_radiacao_msv": 600,
+  "limite_carreira_fonte": "NASA-STD-3001 Vol. 1 Rev. C (REID < 3%, qualquer idade/sexo)",
+  "gcr_espaco_profundo_msv_dia": 1.18,
+  "gcr_fonte": "Artemis I / Orion — Sci Adv 2026, DOI 10.1126/sciadv.adz1892 (0,379 mGy/dia x Q=3,1)",
+  "indicadores": [
+    {
+      "id": "fc",
+      "nome": "Frequência cardíaca",
+      "unidade": "bpm",
+      "baseline_terra": [
+        50,
+        100
+      ],
+      "deriva_esperada": "Queda inicial (expansão de volume central) seguida de elevação progressiva com decondicionamento, débito de sono e estresse; taquicardia ao ortostatismo.",
+      "limiares": {
+        "atencao": [
+          100,
+          null
+        ],
+        "alerta": [
+          110,
+          null
+        ],
+        "emergencia": [
+          130,
+          null
+        ]
+      },
+      "limiares_noturnos": {
+        "delta_sobre_baseline_pct": 10
+      },
+      "teste_ortostatico": {
+        "delta_fc_bpm": 30,
+        "delta_pas_mmhg": -20
+      },
+      "mecanismo": "Remodelação cardíaca precoce (LVEDV/SV caem nos primeiros ~14 dias) e retirada vagal.",
+      "fonte": "Circulation 2026 (DOI 10.1161/CIRCULATIONAHA.125.078665); critério ortostático clínico usual"
+    },
+    {
+      "id": "spo2",
+      "nome": "Saturação de oxigênio",
+      "unidade": "%",
+      "baseline_terra": [
+        95,
+        99
+      ],
+      "deriva_esperada": "96–98% em cabine a ~101 kPa; queda com CO2 elevado, falha de O2 ou anemia.",
+      "limiares": {
+        "atencao": [
+          94,
+          null
+        ],
+        "alerta": [
+          90,
+          null
+        ],
+        "emergencia": [
+          85,
+          null
+        ]
+      },
+      "mecanismo": "Curva de dissociação sigmoide: perto de PAO2 60 mmHg, pequenas quedas derrubam a SpO2 rapidamente.",
+      "confundidores": [
+        "anemia espacial (hemólise +54%)",
+        "CO2 elevado",
+        "hipotermia",
+        "sensores mal posicionados"
+      ],
+      "fonte": "Fisiologia padrão; anemia: Trudel et al., Nature Medicine 2022 (DOI 10.1038/s41591-021-01637-7)"
+    },
+    {
+      "id": "fr",
+      "nome": "Frequência respiratória",
+      "unidade": "rpm",
+      "baseline_terra": [
+        12,
+        20
+      ],
+      "deriva_esperada": "Elevação de 1–3 rpm com CO2 da cabine; redução no sono; elevação compensatória na hipóxia.",
+      "limiares": {
+        "atencao": [
+          24,
+          10
+        ],
+        "alerta": [
+          28,
+          8
+        ],
+        "emergencia": [
+          32,
+          6
+        ]
+      },
+      "contexto_ambiental": {
+        "co2_nominal_mmhg": 3.0,
+        "co2_desvio_mmhg": 0.8,
+        "co2_cefaleia_mmhg": [
+          2,
+          5
+        ]
+      },
+      "mecanismo": "Compensação de acidose/hipóxia; marcador precoce de hipercapnia em ambiente fechado.",
+      "fonte": "NASA HSRB CO2 Risk Record (2025)"
+    },
+    {
+      "id": "tcut",
+      "nome": "Temperatura cutânea",
+      "unidade": "C",
+      "baseline_terra": [
+        33.0,
+        36.5
+      ],
+      "deriva_esperada": "Perda de amplitude e atraso de fase do ritmo circadiano (16 ciclos de luz/dia em órbita baixa); elevação com inflamação.",
+      "limiares": {
+        "atencao": [
+          37.5,
+          35.5
+        ],
+        "alerta": [
+          38.0,
+          35.0
+        ],
+        "emergencia": [
+          39.0,
+          34.0
+        ]
+      },
+      "mecanismo": "Termorregulação depende de fluxo cutâneo, alterado pela redistribuição de fluidos.",
+      "nota": "Temperatura cutânea não é temperatura central; use a tendência circadiana como sinal, não como febre isolada.",
+      "fonte": "Fisiologia circadiana; NASA HRP (sono e ritmo circadiano)"
+    },
+    {
+      "id": "radiacao",
+      "nome": "Exposição individual à radiação",
+      "unidade": "uSv/h e mSv acumulado",
+      "baseline_terra": [
+        0.0001,
+        0.0003
+      ],
+      "deriva_esperada": "Espaço profundo: ~1,18 mSv/dia de GCR; picos agudos em SPE; nêutrons ~30% da dose na ISS.",
+      "limiares": {
+        "atencao_taxa": "5x mediana de 3 h",
+        "alerta_evento_msv": 20,
+        "emergencia_fracao_carreira_pct": 80,
+        "nota": "O gatilho de 20 mSv é operacional (definido pelo projeto), não normativo; o limite normativo é o de carreira (600 mSv)."
+      },
+      "contramedidas": {
+        "astroRad_evento_1972_pct_reducao": 60.7,
+        "astroRad_evento_1989_pct_reducao": 38.5,
+        "abrigo": "módulo com maior blindagem"
+      },
+      "fonte": "Sci Adv 2026 (DOI 10.1126/sciadv.adz1892); CSA 2026 (CANS, nêutrons ~30%)"
+    },
+    {
+      "id": "glicemia",
+      "nome": "Glicemia",
+      "unidade": "mg/dL",
+      "baseline_terra": [
+        70,
+        99
+      ],
+      "deriva_esperada": "Aumento de resistência à insulina em voo; valores pré-analíticos aberrantes são comuns.",
+      "limiares": {
+        "atencao": [
+          54,
+          140
+        ],
+        "alerta": [
+          54,
+          180
+        ],
+        "emergencia": [
+          40,
+          250
+        ]
+      },
+      "nota": "Checar plausibilidade antes de alarmar; ver anomalias reais no OSD-575 (36 e 44 mg/dL em R+45).",
+      "fonte": "NASA OSDR OSD-575 (dado real); diretrizes clínicas"
+    },
+    {
+      "id": "sono",
+      "nome": "Horas de sono",
+      "unidade": "h",
+      "baseline_terra": [
+        7,
+        9
+      ],
+      "deriva_esperada": "6,09 h na ISS; 52% das noites com fármaco hipnótico em missões de ônibus espaciais.",
+      "limiares": {
+        "atencao": [
+          6.0,
+          null
+        ],
+        "alerta": [
+          5.5,
+          null
+        ],
+        "emergencia": [
+          4.0,
+          null
+        ]
+      },
+      "fonte": "Barger et al., Lancet Neurology 2014 (DOI 10.1016/S1474-4422(14)70122-X)"
+    },
+    {
+      "id": "humor",
+      "nome": "Estado comportamental",
+      "unidade": "escala (POMS/autoavaliação)",
+      "baseline_terra": null,
+      "deriva_esperada": "Fadiga, tensão e queda de vigor; risco de conflito interpessoal em confinamento prolongado.",
+      "limiares": {
+        "atencao": "queda em 1 dimensão por 3 dias",
+        "alerta": "queda em 2 dimensões por 3 dias",
+        "emergencia": "ideação de dano ou incapacidade de operar"
+      },
+      "fonte": "NASA HRP — Behavioral Health and Performance; análogos de confinamento"
+    }
+  ],
+  "sans": {
+    "prevalencia_pct": 81,
+    "definicao": "Pelo menos uma característica de SANS em astronautas da NASA",
+    "sinais": [
+      "edema de disco óptico",
+      "achatamento do globo",
+      "dobras coroideanas",
+      "hipermetropia (miopização)"
+    ],
+    "fonte": "Eye (Nature) 2026, DOI 10.1038/s41433-026-04651-6",
+    "observacao": "Nenhum dos 5 vitais detecta SANS; requer módulo ocular guiado (sintomas, acuidade, histórico)."
+  }
+}
