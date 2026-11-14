@@ -32,7 +32,7 @@ Este dossiê é **complementar** a [`CIENCIA-NASA.md`](../CIENCIA-NASA.md) e a [
 1. **O desafio de 2026 tem apenas 5 recursos oficiais, e 2 são da Agência Espacial Canadense (CSA).** São eles: *5 Hazards of Human Spaceflight*, *Risks of Human Spaceflight*, *Ongoing HRP Research in Space* (NASA) e *Monitoring Radiation for Astronaut Health* + *Why Do We Conduct Science Experiments in Space?* (CSA). Ou seja: **radiação deixou de ser tema periférico e virou recurso oficial do desafio** — citar a CSA e o componente de nêutrons é diferenciação barata e visível.
 2. **O texto oficial pede explicitamente seis indicadores** — pressão arterial, frequência cardíaca, glicemia, temperatura corporal, horas de sono e humor — e diz que *qualquer* entrada serve (teclado, mouse, câmera). Seu recorte de 5 vitais (FC, SpO₂, FR, Tcut, radiação) é tecnicamente mais forte que o pedido, mas **precisa cobrir os seis citados** para não perder ponto em "relevância". Solução: os 5 vitais + glicemia e sono/humor como módulos satélites.
 3. **Existe dado humano real, aberto e baixável da missão Inspiration4 no OSDR**, com API REST e tabelas já "transformadas" para machine learning. Baixamos e conferimos: o painel metabólico (OSD-575) tem 4 tripulantes × 7 pontos temporais (L-92, L-44, L-3, R+1, R+45, R+82, R+194) com glicose, sódio, potássio, cálcio, creatinina, ALT etc.
-4. **O dado real tem anomalias — e isso é um argumento de venda.** No OSD-575 há glicemias de **36 e 44 mg/dL** em R+45, fisiologicamente implausíveis para tripulantes assintomáticos. Um software que **detecta artefato antes de alarmar** é mais crível que um que pinta tudo de vermelho. Coloque isso na demo.
+4. **O dado real tem anomalias — e isso é um argumento de produto.** No OSD-575 há glicemias de **36 e 44 mg/dL** em R+45, fisiologicamente implausíveis para tripulantes assintomáticos. Um software que **detecta artefato antes de alarmar** é mais crível que um que pinta tudo de vermelho. Isso deve aparecer na demonstração do produto.
 5. **A dose de radiação medida dentro da Orion na Artemis I foi de 1,18 ± 0,03 mSv/dia** (GCR, 0,379 mGy/dia × fator de qualidade 3,1). Com o limite de carreira de **600 mSv** (NASA-STD-3001 Rev. C, REID < 3%), isso dá **≈ 508 dias** de exposição contínua só de GCR antes de esgotar a carreira — número perfeito para a projeção acumulada do seu módulo radiológico.
 6. **Um único evento solar tipo agosto/1972 equivaleria a 34–37% do limite de carreira** (222 mSv); com o colete AstroRad cai para ~87,5 mSv (−60,7%). Em evento tipo outubro/1989: 233,5 → 143,6 mSv (−38,5%). Isso justifica, com número, o botão "entrar no abrigo / vestir proteção" do seu alerta.
 7. **O SANS é o "matador" clínico de 2026:** o consenso de especialistas publicado em 2026 reporta **pelo menos uma alteração de SANS em 81% dos astronautas da NASA**. Nenhum dos seus 5 vitais detecta SANS — mas um módulo ocular (autoexame guiado + sintomas + histórico) resolve, e nenhum concorrente vai ter isso.
@@ -74,7 +74,7 @@ Este dossiê é **complementar** a [`CIENCIA-NASA.md`](../CIENCIA-NASA.md) e a [
 | 4 | Monitoring Radiation for Astronaut Health (26/02/2026) | CSA | https://www.asc-csa.gc.ca/eng/news/articles/2026/2026-02-26-monitoring-radiation-astronaut-health.asp |
 | 5 | Why Do We Conduct Science Experiments in Space? | CSA | https://www.asc-csa.gc.ca/eng/iss/science/why-do-we-conduct-science-experiments-in-space.asp |
 
-**Implicação estratégica:** o recurso nº 4 é uma notícia de fevereiro de 2026 sobre o **CANS (Canadian Active Neutron Spectrometer)**, com contrato de **C$ 5,5 milhões** à Bubble Technology Industries, e afirma que **nêutrons respondem por ~30% da dose total na ISS**. Um app que trata radiação como "um número em µSv/h" ignora que a dose tem **componentes** (GCR, prótons de SPE, nêutrons secundários) e **qualidade** (fator de qualidade). Citar isso em 15 segundos de pitch derruba a objeção "vocês só fizeram um mostrador".
+**Implicação estratégica:** o recurso nº 4 é uma notícia de fevereiro de 2026 sobre o **CANS (Canadian Active Neutron Spectrometer)**, com contrato de **C$ 5,5 milhões** à Bubble Technology Industries, e afirma que **nêutrons respondem por ~30% da dose total na ISS**. Um app que trata radiação como "um número em µSv/h" ignora que a dose tem **componentes** (GCR, prótons de SPE, nêutrons secundários) e **qualidade** (fator de qualidade). Citar isso na apresentação responde à objeção "vocês só fizeram um mostrador".
 
 ### 1.5 Critérios de julgamento (como a avaliação decide)
 
@@ -262,7 +262,7 @@ Esta é a tabela que deve virar `dados/ancoras_clinicas.json` e alimentar os *to
 3. Conteúdo arterial: `CaO₂ = 1,34 × Hb × SaO₂ + 0,003 × PaO₂` — **inclua Hb**; é o que conecta a anemia espacial ao seu alerta.
 4. Compensação: `FR = FR₀ × (1 + k·(1 − SpO₂/SpO₂₀))`, com k ≈ 2,5; `FC` sobe com hipóxia e com ansiedade.
 
-**O que a demo mostra (números reais do script):** SpO₂ de 97,7% → 87,8%; PAO₂ de 100 → 54 mmHg; CaO₂ de 18,9 → 16,9 mL/dL. O **alerta sai aos 81 min**, e o limiar de 90% só é cruzado aos **92 min** — **11 minutos de antecedência** neste cenário. O número de "minutos de antecedência" é o seu diferencial mensurável, e ele cresce em vazamentos mais lentos.
+**O que a simulação mostra (números reais do script):** SpO₂ de 97,7% → 87,8%; PAO₂ de 100 → 54 mmHg; CaO₂ de 18,9 → 16,9 mL/dL. O **alerta sai aos 81 min**, e o limiar de 90% só é cruzado aos **92 min** — **11 minutos de antecedência** neste cenário. O número de "minutos de antecedência" é o seu diferencial mensurável, e ele cresce em vazamentos mais lentos.
 
 **Por que é defensável:** as equações são as mesmas usadas em UTI e em fisiologia de altitude; os parâmetros (FiO₂, Pb) vêm do ambiente da cabine; a Hb vem de dado real (OSD-569/OSD-575, quando houver).
 
@@ -276,7 +276,7 @@ Esta é a tabela que deve virar `dados/ancoras_clinicas.json` e alimentar os *to
 - **Teste ortostático guiado:** deitar 5 min → levantar 3 min; critério clássico de intolerância: **↑FC ≥ 30 bpm ou ↓PAS ≥ 20 mmHg**.
 - **Fusão:** `risco = w1·z(FC) + w2·(−z(RMSSD)) + w3·z(FR) + w4·(débito de sono)`.
 
-**O que a demo mostra:** o app **pede** o teste ortostático (prompt proativo), coleta 3 min de dados, e classifica "resposta ortostática exacerbada — provável decondicionamento precoce; iniciar contramedida (LBNP/fluid loading/exercício) e reavaliar em 24 h".
+**O que a simulação mostra:** o app **pede** o teste ortostático (prompt proativo), coleta 3 min de dados, e classifica "resposta ortostática exacerbada — provável decondicionamento precoce; iniciar contramedida (LBNP/fluid loading/exercício) e reavaliar em 24 h".
 
 **Base científica:** remodelação cardíaca precoce documentada em 13 astronautas (Circulation 2026), com queda de LVEDV/SV nos primeiros 14 dias e recuperação posterior; trombose de veia jugular interna já descrita (3º caso documentado, Sci Rep 2026) — seu alerta deve incluir "cefaleia + edema facial + dor cervical" como *red flag* para trombose, não só para SANS.
 
@@ -291,7 +291,7 @@ Esta é a tabela que deve virar `dados/ancoras_clinicas.json` e alimentar os *to
 - Efeito do colete: fator **0,39** (evento tipo 1972) a **0,61** (tipo 1989), conforme medido em phantom.
 - Alerta em três gatilhos: (a) taxa instantânea > 5× a mediana das últimas 24 h; (b) incremento projetado > 20 mSv; (c) fração de carreira > 80%.
 
-**O que a demo mostra:** o painel de carreira começa em **0,28%** após 24 h (1,68 mSv) e salta para **37%** no cenário de um SPE tipo 1972 — com o botão "vestir AstroRad" caindo para **14,6%** e preservando **até 193 dias** de exposição profunda (número do paper). É a diferença entre um mostrador e uma ferramenta de decisão.
+**O que a simulação mostra:** o painel de carreira começa em **0,28%** após 24 h (1,68 mSv) e salta para **37%** no cenário de um SPE tipo 1972 — com o botão "vestir AstroRad" caindo para **14,6%** e preservando **até 193 dias** de exposição profunda (número do paper). É a diferença entre um mostrador e uma ferramenta de decisão.
 
 
 ### 7.4 Resultados reproduzíveis (saída de `docs/pesquisa-2026/scripts/simulador_astral_vital.py`)
@@ -343,7 +343,7 @@ Esta é a tabela que deve virar `dados/ancoras_clinicas.json` e alimentar os *to
 - Terra–Marte: **4 a 24 min** (ida, depende das órbitas). Uma hipoxemia grave não espera.
 - Consequência de projeto: **todo alerta nível 3 tem um "plano autônomo" local**, escrito para não especialista, e o nível 2 tem um "resumo para o flight surgeon" pronto para envio (o *handoff package*: série temporal, contexto, ações já tomadas).
 
-**Regra dos 30 minutos (proposta):** qualquer condição com risco de vida em < 30 min não pode depender de resposta terrestre. Isso deve estar escrito na tela, não só no pitch.
+**Regra dos 30 minutos (proposta):** qualquer condição com risco de vida em < 30 min não pode depender de resposta terrestre. Isso deve estar escrito na tela, não só no discurso.
 
 ---
 
@@ -376,7 +376,7 @@ Cada número na tela deve ter um dos três selos:
 | 🟡 **DERIVADO** | calculado a partir de real + modelo | fração de carreira (dose/600); z-score; projeção |
 | 🔵 **SIMULADO** | gerado por modelo fisiológico com parâmetros publicados | telemetria contínua de FC/SpO₂; cenário de hipóxia |
 
-**Por que isso ganha ponto:** (a) cumpre o requisito de elegibilidade (citar recursos NASA); (b) demonstra rigor científico; (c) antecipa a pergunta que o avaliador *vai* fazer ("isso é dado real?"); (d) permite escalar quando dados reais chegarem (Artemis II/III, novas missões OSDR).
+**Por que isso importa:** (a) cita recursos NASA com proveniência; (b) demonstra rigor científico; (c) responde antes da pergunta "isso é dado real?"; (d) permite escalar quando dados reais chegarem (Artemis II/III, novas missões OSDR).
 
 ---
 
