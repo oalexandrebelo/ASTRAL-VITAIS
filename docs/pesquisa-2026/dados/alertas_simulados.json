@@ -1,0 +1,63 @@
+{
+  "gerado_em": "2026-11-14",
+  "modelo": "ASTRAL VITAIS v1 — simulação fisiológica com parâmetros publicados",
+  "aviso": "Telemetria SINTÉTICA. Não representa dados de astronautas reais.",
+  "limite_carreira_msv": 600.0,
+  "gcr_msv_dia": 1.18,
+  "cenarios": [
+    {
+      "cenario": "Hipóxia progressiva",
+      "evento": "Microvazamento de cabine: 101,3 -> 72 kPa em 90 min (FiO2 21%)",
+      "limiar": "SpO2 < 90%",
+      "alerta_min": 81,
+      "cruzamento_min": 92,
+      "cruzamento_85_min": null,
+      "antecedencia_min": 11,
+      "acao": "Subir O2 (máscara), igualar pressão, restringir esforço, checar vazamento e preparar evacuação para módulo pressurizado.",
+      "metodo": "Equação do gás alveolar + curva de Severinghaus; alerta por projeção linear (15 min)."
+    },
+    {
+      "cenario": "Alterações cardiovasculares",
+      "evento": "6 h de turno com débito de sono + teste ortostático (3 min) no minuto 240",
+      "limiar": "CUSUM > 5 e RMSSD < 70% do baseline e FC +6 bpm sustentada",
+      "alerta_min": 230,
+      "cruzamento_min": 230,
+      "antecedencia_min": null,
+      "acao": "Hidratação + sal, exercício resistivo/ARED, LBNP se disponível, repetir ortostase em 24 h e revisar sono.",
+      "metodo": "EWMA (lambda 0,2) + CUSUM (k 0,5) sobre z-score robusto; RMSSD por janelas.",
+      "confirmacao_ortostatica": {
+        "delta_fc_bpm": 33.3,
+        "delta_pas_mmhg": -14.6,
+        "criterio": "dFC >= 30 bpm ou dPAS <= -20 mmHg",
+        "positivo": true
+      }
+    },
+    {
+      "cenario": "Exposição radiológica elevada",
+      "evento": "GCR de 1,18 mSv/dia + SEP de 0,5 mSv em 40 min (minuto 600)",
+      "limiar": "Taxa instantânea > 5x a mediana das últimas 3 h",
+      "alerta_min": 603,
+      "cruzamento_min": 603,
+      "antecedencia_min": null,
+      "acao": "Abrigar no módulo mais blindado, vestir AstroRad, cancelar EVA, registrar dose e reavaliar exposição acumulada.",
+      "metodo": "D(t) = D0*t + soma(SEP); fracao = D/600 mSv; alerta por razão de taxa.",
+      "antecedencia_estimada_via_donki": "dezenas de minutos (flare -> chegada de partículas); requer feed DONKI ativo",
+      "dose_24h_msv": 1.6808,
+      "dias_de_carreira_restantes_gcr": 507.1,
+      "projecao_30d_msv": 35.4,
+      "projecao_90d_msv": 106.2,
+      "spe_1972": {
+        "sem_colete_msv": 222.3,
+        "com_colete_msv": 87.5,
+        "pct_carreira_sem_colete": 37.0,
+        "pct_carreira_com_colete": 14.6
+      },
+      "spe_1989": {
+        "sem_colete_msv": 233.5,
+        "com_colete_msv": 143.6,
+        "pct_carreira_sem_colete": 38.9,
+        "pct_carreira_com_colete": 23.9
+      }
+    }
+  ]
+}

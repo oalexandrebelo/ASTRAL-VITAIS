@@ -153,6 +153,7 @@ O percurso completo e a alternativa sem WebGL foram verificados no navegador de 
 ## Documentação
 
 - [Base científica NASA e requisitos](docs/CIENCIA-NASA.md)
+- [Pesquisa 2026: dados abertos, literatura e modelo executável](docs/pesquisa-2026/LEIA-ME.md)
 - [Evidências estruturadas e escopo das regras](docs/NASA-EVIDENCE.json)
 - [Análise dos artigos e evolução dos equipamentos](docs/ARTIGOS-E-EQUIPAMENTOS.md)
 - [Design do jogo e contrato do motor](docs/GAME-DESIGN.md)
@@ -168,7 +169,7 @@ O percurso completo e a alternativa sem WebGL foram verificados no navegador de 
 |---|---|---|
 | Refinar a beta | Revisão científica, testes com participantes e revisão das respostas ao final | O participante explica o motivo das ações e reconhece incerteza nos dados |
 | Procedimentos práticos | Estações 3D com tarefas de vários passos e alternativa HTML equivalente | Sequência de ações verificável, acessível e compreensível |
-| Evidências de pesquisa | Catálogo curado de estudos SOMA/OSDR, com proveniência | Cada resultado informa estudo, método, população e limitações |
+| Evidências de pesquisa | Catálogo curado de estudos SOMA/OSDR, com proveniência — primeiro lote em [`docs/pesquisa-2026`](docs/pesquisa-2026/LEIA-ME.md) | Cada resultado informa estudo, método, população e limitações |
 | Instrutor | Reprodução de sessões e análise do aprendizado; avaliar Open MCT | Mesma semente e ações permitem reproduzir a sessão |
 | Lua, Marte e XR | Cenários próprios e interação espacial em aparelhos definidos | Contexto científico e usabilidade validados para cada cenário |
 | Pesquisa com hardware | Integração experimental separada da beta | Finalidade, governança, equipe responsável e protocolo de validação definidos |
