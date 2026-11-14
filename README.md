@@ -8,6 +8,8 @@
 
 Versão: **0.1.0-beta.1** · Idioma: **português do Brasil** · [Repositório](https://github.com/oalexandrebelo/ASTRAL-VITAIS)
 
+**[Abrir o beta publicado](https://astral-vitais.alexandrebelo.chatgpt.site)** · Acesso privado do proprietário no ambiente de publicação.
+
 > Protótipo educativo independente. Todos os sinais e eventos são sintéticos. A pontuação mede escolhas no jogo; não mede saúde, aptidão para voo ou risco individual. O projeto não tem vínculo, certificação ou aprovação da NASA.
 
 ## O que a beta entrega
@@ -146,6 +148,8 @@ A rodada registrada em 14/11/2026 executou **23 testes do motor, todos aprovados
 
 Testes de domínio não comprovam compatibilidade universal de navegador, acessibilidade integral, desempenho em todos os aparelhos ou validação médica. O comando `npm run build` verifica tipos e produz o artefato estático; a inspeção visual e o percurso de interação complementam essa etapa em cada entrega.
 
+O percurso completo e a alternativa sem WebGL foram verificados no navegador de teste. Na página publicada, o Chrome conectado renderizou a Terra, atmosfera e astronauta em Three.js; a troca entre as câmeras Órbita e Tripulante também foi observada. [Registro completo da validação](docs/VALIDACAO.md).
+
 ## Documentação
 
 - [Base científica NASA e requisitos](docs/CIENCIA-NASA.md)
@@ -155,6 +159,7 @@ Testes de domínio não comprovam compatibilidade universal de navegador, acessi
 - [Arquitetura e plano de evolução](docs/ROADMAP-E-ARQUITETURA.md)
 - [Repositórios e oportunidades de integração](docs/REPOSITORIOS.md)
 - [Decisões do ASTRAL VITAIS](docs/DECISOES-ASTRAL.md)
+- [Validação executada e limites da prova](docs/VALIDACAO.md)
 - [Licenças e avisos de terceiros](THIRD-PARTY-NOTICES.md)
 
 ## Evolução do produto

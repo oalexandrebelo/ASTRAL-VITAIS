@@ -21,12 +21,17 @@ Data: 14/11/2026. Versão: 0.1.0-beta.1.
 | Tecnologia | 9 marcos de equipamentos presentes |
 | Reiniciar | Diálogo confirmou a intenção; missão voltou ao início e tempo zerou |
 | Layout em 1363 × 936 | Inspecionado; sem rolagem horizontal |
+| Página publicada no Chrome conectado | Terra, atmosfera, órbita e astronauta renderizados em Three.js |
+| Câmeras da cena 3D | Modos Órbita e Tripulante responderam à interação |
+| Layout publicado em 1512 × 749 | Inspecionado; largura do documento igual à largura disponível, sem rolagem horizontal |
 
-## Limite da prova gráfica
+## Prova gráfica e alternativa sem WebGL
 
 O navegador de teste inicial informou `GL_RENDERER = Disabled` e recusou a criação de contexto WebGL. A visualização alternativa foi acionada e o percurso educativo permaneceu funcional. Essa execução **não comprova a renderização Three.js em GPU**. O código de cena passou na checagem de tipos e no build.
 
-Nenhum parâmetro de segurança do navegador foi alterado para contornar a limitação. A renderização 3D e o modo de aproximação do tripulante devem ser conferidos em navegador com WebGL disponível. Resultados adicionais, quando executados, são registrados abaixo.
+Nenhum parâmetro de segurança do navegador foi alterado para contornar a limitação.
+
+Em uma segunda verificação, a página publicada em https://astral-vitais.alexandrebelo.chatgpt.site foi aberta no Chrome conectado, com WebGL disponível. Foram observados o planeta, a atmosfera, a órbita e o astronauta, além da mudança de enquadramento para o modo Tripulante e do retorno ao modo Órbita. Essa execução comprova a renderização 3D nesse navegador; não comprova desempenho ou compatibilidade em todos os dispositivos.
 
 ## Revisão científica independente
 
@@ -45,5 +50,6 @@ Essa revisão de conteúdo não é validação médica, aprovação da NASA ou a
 
 - Não foram conectados dispositivos, APIs de missão, pacientes ou dados pessoais.
 - Não foram executados ensaio clínico, auditoria formal WCAG, teste com astronautas ou revisão por médico aeroespacial.
+- Não foi realizada uma rodada de validação em aparelhos móveis físicos.
 - Não há instalação offline por service worker. O build pode ser servido localmente sem ativos remotos; a primeira instalação das dependências do código-fonte requer acesso ao registro npm.
 - A CI foi configurada no repositório. O resultado da execução remota deve ser consultado em Actions; a existência do arquivo de workflow não equivale a aprovação remota.
